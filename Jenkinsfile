@@ -4,14 +4,18 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                docker {
+                dockerContainer {
                     image: 'node:18-alpine'
                     reuseNode true
                 }
             }
           
             steps {
-                echo 'Building the application...'
+                sh '''
+                      ls -la
+                      node --version
+                      npm --version
+                '''
             }
         }
     }
